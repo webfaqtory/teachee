@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'AvenirNextRegular';
+  src: url("/sites/all/themes/teachee_theme/fonts/AvenirNext-Regular.ttf"); }
+@font-face {
+  font-family: 'AvenirNextMedium';
+  src: url("/sites/all/themes/teachee_theme/fonts/AvenirNext-Medium.ttf"); }
+@font-face {
+  font-family: 'AvenirNextDemiBold';
+  src: url("/sites/all/themes/teachee_theme/fonts/AvenirNext-DemiBold.ttf"); }
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url("/sites/all/themes/teachee_theme/fonts/SourceSansPro-Regular.otf"); }
+@font-face {
+  font-family: 'SourceSansProSemiBold';
+  src: url("/sites/all/themes/teachee_theme/fonts/SourceSansPro-Semibold.otf"); }
+
+/*# sourceMappingURL=teachee-theme.no-query.css.map */

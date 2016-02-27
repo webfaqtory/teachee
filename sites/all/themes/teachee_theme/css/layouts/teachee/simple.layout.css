@@ -1,0 +1,138 @@
+/*******************************************************************************
+ * simple.layout.scss
+ *
+ * Styling of the "simple" layout demonstrating the Compass grid extension Susy
+ * and building mobile first layouts.
+ ******************************************************************************/
+/* line 38, ../../../sass/layouts/teach/simple.layout.scss */
+.l-header,
+.l-main,
+.l-footer {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px; }
+  /* line 12, ../../../../../../../../../../home/john/.rvm/gems/ruby-1.9.3-p547@omega.teach_theme/gems/susy-2.2.12/sass/susy/output/support/_clearfix.scss */
+  .l-header:after,
+  .l-main:after,
+  .l-footer:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+/* line 45, ../../../sass/layouts/teach/simple.layout.scss */
+.l-region--highlighted,
+.l-region--help,
+.l-region--sidebar-first,
+.l-region--sidebar-second {
+  margin-bottom: 20px; }
+
+@media (min-width: 44em) {
+  /* line 53, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-header,
+  .l-main,
+  .l-footer {
+    max-width: 1200px; }
+
+  /* line 59, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-branding {
+    width: 32.20339%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 62, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-region--header {
+    width: 66.10169%;
+    float: right;
+    margin-right: 0; }
+
+  /* line 65, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-region--navigation {
+    clear: both; }
+
+  /* line 72, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-first .l-content,
+  .has-sidebar-second .l-content,
+  .has-two-sidebars .l-content {
+    width: 66.10169%;
+    float: left;
+    margin-right: 1.69492%; }
+  /* line 75, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first,
+  .has-sidebar-first .l-region--sidebar-second,
+  .has-sidebar-second .l-region--sidebar-first,
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 32.20339%;
+    float: right;
+    margin-right: 0; }
+  /* line 79, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-first .l-region--sidebar-second,
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-second {
+    clear: right; } }
+@media (min-width: 70em) {
+  /* line 86, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-header,
+  .l-main,
+  .l-footer {
+    max-width: 1200px; }
+
+  /* line 92, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-branding {
+    width: 36.70886%;
+    float: left;
+    margin-right: 1.26582%; }
+
+  /* line 95, ../../../sass/layouts/teach/simple.layout.scss */
+  .l-region--header {
+    width: 62.02532%;
+    float: right;
+    margin-right: 0; }
+
+  /* line 100, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-first .l-content {
+    width: 74.68354%;
+    float: right;
+    margin-right: 0; }
+  /* line 103, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first {
+    width: 24.05063%;
+    float: left;
+    margin-right: 1.26582%; }
+
+  /* line 108, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-second .l-content {
+    width: 74.68354%;
+    float: left;
+    margin-right: 1.26582%; }
+  /* line 111, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-sidebar-second .l-region--sidebar-second {
+    width: 24.05063%;
+    float: right;
+    margin-right: 0;
+    clear: none; }
+
+  /* line 118, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-two-sidebars .l-content {
+    width: 49.36709%;
+    float: left;
+    margin-right: 1.26582%;
+    margin-left: 25.31646%; }
+  /* line 122, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 24.05063%;
+    float: left;
+    margin-right: 1.26582%; }
+  /* line 126, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first {
+    margin-left: -75.94937%; }
+  /* line 129, ../../../sass/layouts/teach/simple.layout.scss */
+  .has-two-sidebars .l-region--sidebar-second {
+    float: right;
+    margin-right: 0;
+    clear: none; } }
+
+/*# sourceMappingURL=simple.layout.css.map */

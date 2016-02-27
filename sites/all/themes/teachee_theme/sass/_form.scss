@@ -1,0 +1,100 @@
+// Site wide form style
+form {
+  .form-text {
+    padding: 10px;
+  }
+  .white_input {
+    border: 1px solid $block_border;
+    padding: 14px;
+  }
+  .form-item {
+    margin-bottom: 16px;
+  }
+  input.form-text {
+    border: 1px solid $gray;
+    background-color: #FFF;
+    width: 100%;
+  }
+  input.form-text:focus {
+    border: 1px solid $green; 
+    background-color: #FFF;
+    color: $green;
+  }
+  .description {
+    color: $black;
+    font-size: 12px !important;
+  }
+  .form-item label {
+    margin-bottom: 16px;
+  }
+  .form-type-checkbox,
+  .form-type-radio,
+  .form-type-radio label,
+  .form-type-radio .iradio_square-green,
+  .form-type-checkbox .icheckbox_square-green, .form-type-checkbox label {
+    display: inline-block;
+  }
+  .form-type-checkbox .icheckbox_square-green, .form-type-radio .iradio_square-green {
+    margin-right: 10px;
+  }
+  .form-type-checkbox label, .form-type-radio label { 
+    position: relative;
+    top: -6px;
+    margin-right: 10px;
+    @include breakpoint($desk) {
+      margin-right: 20px;
+    }
+    @include breakpoint($desk) {
+      margin-right: 76px;
+    }
+    color: $label;
+  }
+  select {
+    padding: 10px;
+    background: #efefef;
+    border: none;
+  }
+  .form-actions {
+    margin-bottom: 60px;
+    position: relative;
+    .wait {
+      left: 360px;
+      position: absolute;
+      top: 32px;
+      display: none;
+    }
+  }
+  .disabled {
+    background-color: #a6acb3 !important;
+    cursor: default;
+  }
+  .disabled:hover {
+    background-color: #a6acb3 !important;
+  }
+  .form-actions .gray_button {
+    margin-right: 40px;
+  }
+  .form-actions .next_button {
+    margin-left: 40px;
+  }
+  #edit-delete, #edit-delete--1, #edit-delete--2, #edit-delete--3 {
+    display: none;
+  }
+  .field-multiple-table th {
+    display: none;
+  }
+  #edit-field-latitude, #edit-field-longitude {
+    display: none;
+  }
+  .form-item label, .form-actions label {
+    font-weight: normal;
+  }
+}
+.page-moderate {
+  #edit-actions {
+    #edit-delete {
+      display: inline-block !important;
+      margin-left: 20px;
+    }
+  }
+}

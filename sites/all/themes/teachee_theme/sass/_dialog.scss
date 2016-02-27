@@ -1,0 +1,292 @@
+.ui-widget-overlay {
+  background: #4c4c4c;
+  opacity: 0.5;
+}
+
+.ui-widget-content, .ui-widget-header {
+  border: none;
+}
+.ui-dialog {
+  padding: 0;
+  .ui-dialog-titlebar {
+    background-color: #31373f;
+    //background-image: url(../../../images/dialog_logo.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF;
+  }
+  .ui-dialog-content {
+    padding: 16px 16px 8px 16px;
+  }
+  .ui-widget-header {
+    font-weight: normal;
+    font-size: 16px;
+  }
+  .ui-dialog-buttonpane {
+    padding-top: 0;
+    margin-top: 0;
+  }
+  textarea {
+    width: 100%;
+  }
+  .green_button {
+    font-size: 14px;
+  }
+  .ui-dialog-buttonpane {
+    .ui-dialog-buttonset {
+      button {
+        min-width: 120px;
+        @include green_button;
+      }
+    }
+  }
+}
+
+.ui-dialog-titlebar {
+  .ui-button, .ui-dialog-titlebar-close {
+    width: 16px;
+    height: 16px;
+    background: url("../../../images/dialog_close.png") no-repeat left top;
+  }
+  .ui-dialog-titlebar-close {
+    border: none;
+  }
+  .ui-button-icon-only .ui-icon {
+    left: 0;
+  }
+  .ui-icon {
+    background: none;
+  }
+  .ui-state-default {
+    background-position: 0 0;
+    border: none;
+  }
+  .ui-state-hover {
+    background-position: 0 -15px;
+    border: none;
+  }
+}
+.ui-dialog-buttonset {
+  .ui-button-text {
+    padding: 0;
+  }
+  .ui-state-default {
+    @include green_button;
+    min-width: 135px;
+  }
+  .ui-state-hover {
+    @include green_button_hover;
+    min-width: 135px;
+  }
+}
+.ui-dialog.facebook {
+  .ui-dialog-titlebar {
+    background-color: #4e71a7;
+    background-image: url(../../../images/dialog_facebook.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF;
+  }
+  .ui-dialog-buttonset {
+    .ui-state-default {
+      background: #4e71a7;
+    }
+    .ui-state-hover {
+      background: #798fb2;
+    }
+  }
+  textarea {
+    height: 140px;
+  }
+}
+.ui-dialog.twitter {
+  .ui-dialog-titlebar {
+    background-color: #0abdf5;
+    background-image: url(/../../../images/dialog_twitter.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF;
+  }
+  .ui-dialog-buttonset {
+    .ui-state-default {
+      background: #0abdf5;
+    }
+    .ui-state-hover {
+      background: #09a8d9;
+    }
+  }
+  textarea {
+    height: 80px;
+  }
+}
+.ui-dialog.linkedin {
+  .ui-dialog-titlebar {
+    background-color: #068fc1;
+    background-image: url(../../../images/dialog_linkedin.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF;
+  }
+  .ui-dialog-buttonset {
+    .ui-state-default {
+      background: #068fc1;
+    }
+    .ui-state-hover {
+      background: #077ca7;
+    }
+  }
+  textarea {
+    height: 140px;
+  }
+}
+.ui-dialog.email {
+  .ui-dialog-titlebar {
+    background-color: #31373f;
+    background-image: url(../../../images/dialog_email.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF;
+  }
+  #social_post_message {
+    height: 140px;
+  }
+  #social_email_addresses {
+    height: 80px;
+  }
+  label {
+    margin-top: 20px;
+    display: block;
+  }
+}
+.ui-dialog.signin {
+  #signin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .green_button {
+      width: 135px;
+    }
+    input {
+      width: 300px;
+    }
+  }
+}
+.ui-dialog.noclose .ui-dialog-titlebar .ui-button {
+  display: none;
+}
+#modal_dialog_content {
+  margin-bottom: 15px;
+  .icheckbox_square-green, .iradio_square-green {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  .buttons {
+    margin-top: 20px;
+    div {
+      min-width: 160px;
+    }
+    .margin {
+      margin-right: 10px;
+    }
+    .green_button {
+      min-width: 160px;
+    }
+  }
+  a {
+    color: $green;
+  }
+}
+#modal_feedback_content #feedback-node-form {
+  #field-page-path-add-more-wrapper,
+  .form-item-title,
+  #edit-field-agent {
+    display: none;
+  }
+  #edit-actions {
+    margin-bottom: 20px;
+  }
+}
+
+#modal_dialog_join {
+  .join {
+    margin-top: 10px;
+  }
+  #user-register-form, #edit-actions {
+    margin-bottom: 15px;
+  }
+  #signin {
+    position: relative;
+    @include breakpoint($tab) {
+      top: 28px;
+    }
+    margin-bottom: 20px;
+  }
+}
+#modal_terms_dialog {
+  #dialog_content {
+    max-height: 400px;
+  }
+}
+.ui-dialog #modal_dialog_endorse_teacher #modal_dialog_endorse_teacher_content {
+  .green_button {
+    display: none;
+  }
+}
+.ui-dialog.incomming_call {
+  .top_wrapper {
+    .photo {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 20px;
+      .border {
+        border-radius: 40px;
+        height: 80px;
+        width: 80px;
+      }
+      #online {
+        display: none;
+      }
+    }
+    .details {
+      display: inline-block;
+      vertical-align: top;
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  p {
+    text-align: center;
+  }
+  .ui-dialog-titlebar {
+    .ui-button {
+      display: none;
+    }
+  }
+}
+#modal_pay_teacher {
+  .currency_wrapper {
+    .text {
+      margin-top: 10px;
+    }
+    .form-item-currency {
+      float: right;
+    }
+  }
+  .center {
+    input {
+      margin: 20px 0;
+    }
+  }
+  .form-item-amount {
+    input {
+      margin-top: 5px;
+    }
+  }
+}

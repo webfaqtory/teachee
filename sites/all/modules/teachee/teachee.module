@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * This is the core module of Teachee.
+ *
+ */
+
+function teachee_custom_theme() {
+  global $language;
+  if ($language->prefix == 'zh-hans') {
+    $language->prefix = 'zh';
+  }
+  setcookie('language', $language->prefix, 0, '/');
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function teachee_init() {
+  drupal_add_js(drupal_get_path('module', 'teachee') . '/js/common.js');
+  drupal_add_js(drupal_get_path('module', 'teachee') . '/js/front.js');
+  drupal_add_js(drupal_get_path('module', 'teachee') . '/js/jquery.placeholder.js');
+  drupal_add_library('system', 'ui.dialog');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function teachee_menu() {
+  $items = array();
+  
+  $items['front'] = array(
+    'page callback' => 'teachee_front',
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+  );
+  $items['user-login'] = array(
+    'page callback' => 'teachee_user_login_credentials',
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+  );
+  $items['reset-password'] = array(
+    'page callback' => 'teachee_reset_password',
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_library_alter().
+ */
+function teachee_library_alter(&$libraries, $module) {
+  unset($libraries['ui']['css']['misc/ui/jquery.ui.theme.css']);
+  $libraries['ui']['css'][libraries_get_path('jquery_ui') . '/css/custom-theme/jquery-ui-1.10.4.custom.css'] = array();
+}
+
+function teachee_front() {
+  global $user;
+  
+  if (!$user->uid) {
+    return teachee_front_anonymous();
+  }else{
+    return teachee_front_user();
+  }
+}
+
+function teachee_front_anonymous() {
+  $output = '<div class="fullscreen_wrapper"><div class="fullscreen-bg">
+    <video class="fullscreen-bg__video" autoplay="" loop="" muted="" poster="/sites/default/files/ocean.jpg">
+      <source type="video/mp4" src="/sites/default/files/ocean.mp4"></source>
+      <source type="video/webm" src="/sites/default/files/ocean.webm"></source>
+      <source type="video/ogg" src="/sites/default/files/ocean.ogv"></source>
+    </video>
+  </div></div>
+  <div class="fullscreen_transparancy"></div>';
+  
+  return $output;
+}
+
+function teachee_front_user() {
+  $output = '';
+  
+  return $output;
+}
+
+function teachee_sign_in_out() {
+  global $user;
+  
+  $output = '';
+  if (!$user->uid) {
+    $output = '<a href="#" onclick="signIn();">' . t("Sign-in") . '</a>';
+  }else{
+    $output = l(t("Sign-out"), 'user/logout');
+  }
+  return $output;
+}
+
+function teachee_user_login_credentials($email, $password) {
+  $username = '';
+  if ($account = user_load_by_mail($email)) {
+    $username = $account->name;
+  }else if ($account = user_load_by_name($email)) {
+    $username = $account->name;
+  }
+  if ($username) {
+    if (user_authenticate($username, $password)) {
+      $user_obj = user_load_by_name($username);
+      $form_state = array();
+      $form_state['uid'] = $user_obj->uid;
+      user_login_submit(array(), $form_state);
+      echo('ok');
+    }else{
+      echo('BAD');
+    }
+  }else{
+    echo('BAD');
+  }
+}
+
+function teachee_reset_password($email) {
+  global $user;
+
+  $uid = db_query("SELECT uid FROM {users} WHERE mail = '$email'")->fetchField();
+  $account = user_load($uid);
+  _user_mail_notify('password_reset', $account);
+}

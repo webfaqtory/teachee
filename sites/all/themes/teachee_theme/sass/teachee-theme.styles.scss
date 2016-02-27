@@ -1,0 +1,27 @@
+// Import variables, abstractions, base styles and components.
+// Uncomment the next lines and adjust them to your needs.
+//@import "variables/{YOUR FILE NAME HERE}";
+//@import "abstractions/{YOUR FILE NAME HERE}";
+//@import "base/{YOUR FILE NAME HERE}";
+//@import "components/{YOUR FILE NAME HERE}";
+
+@font-face {
+  font-family: 'AvenirNextRegular';
+  src: url('/sites/all/themes/teachee_theme/fonts/AvenirNext-Regular.ttf');
+}
+@font-face {
+  font-family: 'AvenirNextMedium';
+  src: url('/sites/all/themes/teachee_theme/fonts/AvenirNext-Medium.ttf');
+}
+@font-face {
+  font-family: 'AvenirNextDemiBold';
+  src: url('/sites/all/themes/teachee_theme/fonts/AvenirNext-DemiBold.ttf');
+}
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/sites/all/themes/teachee_theme/fonts/SourceSansPro-Regular.otf');
+}
+@font-face {
+  font-family: 'SourceSansProSemiBold';
+  src: url('/sites/all/themes/teachee_theme/fonts/SourceSansPro-Semibold.otf');
+}

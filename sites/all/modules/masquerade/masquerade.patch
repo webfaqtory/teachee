@@ -1,0 +1,108 @@
+diff --git a/masquerade.module b/masquerade.module
+index f674659..b39d43d 100644
+--- a/masquerade.module
++++ b/masquerade.module
+@@ -28,6 +28,10 @@ function masquerade_permission() {
+       'title' => t('Masquerade as user'),
+       'description' => t('Masquerade as another user.'),
+     ),
++    'masquerade as any user' => array(
++      'title' => t('Masquerade as any User'),
++      'description' => t('Masquerade as any user.'),
++    ),
+     'masquerade as admin' => array(
+       'title' => t('Masquerade as admin'),
+       'description' => t('Masquerade as the site admin (UID 1).'),
+@@ -410,8 +414,9 @@ function masquerade_user_view($account, $view_mode, $langcode) {
+   // hidden.
+   $allowed_uids = db_query("SELECT uid_to FROM {masquerade_users} WHERE uid_from = :uid_from", array(':uid_from' => $user->uid))
+     ->fetchCol();
++  $can_masquerade_as_user = in_array($account->uid, $allowed_uids) || user_access('masquerade as any user');
+ 
+-  if (user_access($perm) && empty($account->masquerading) && $user->uid != $account->uid && in_array($account->uid, $allowed_uids)) {
++  if (user_access($perm) && empty($account->masquerading) && $user->uid != $account->uid && $can_masquerade_as_user) {
+     $account->content['masquerade'] = array(
+       '#markup' => l(t('Masquerade as !user', array('!user' => $account->name)),
+         'masquerade/switch/' . $account->uid,
+@@ -652,12 +657,13 @@ function masquerade_block_1_validate($form, &$form_state) {
+     ->execute()
+     ->fetchField();
+   if ($to_uid !== FALSE) {
+-    $allowed = db_select('masquerade_users', 'm')
+-      ->fields('m', array('uid_to'))
+-      ->condition('m.uid_to', $to_uid, '=')
+-      ->condition('m.uid_from', $user->uid, '=')
+-      ->execute()
+-      ->fetchField();
++    $allowed = user_access('masquerade as any user') ||
++               db_select('masquerade_users', 'm')
++                  ->fields('m', array('uid_to'))
++                  ->condition('m.uid_to', $to_uid, '=')
++                  ->condition('m.uid_from', $user->uid, '=')
++                  ->execute()
++                  ->fetchField();
+   }
+   if (isset($_SESSION['masquerading'])) {
+     form_set_error('masquerade_user_field', t('You are already masquerading. Please <a href="@unswitch">switch back</a> to your account to masquerade as another user.', array('@unswitch' => url('masquerade/unswitch', array('query' => array('token' => drupal_get_token('masquerade/unswitch')))))));
+diff --git a/masquerade.test b/masquerade.test
+index ac01d08..920a331 100644
+--- a/masquerade.test
++++ b/masquerade.test
+@@ -24,23 +24,49 @@ class MasqueradeTestCase extends DrupalWebTestCase {
+     $admin_perms = array(
+       'administer site configuration',
+       'administer permissions',
++      'administer blocks',
++      'administer masquerade',
++      'administer users',
++      'access user profiles',
+       'masquerade as user',
++      'masquerade as any user',
+     );
+     $admin = $this->drupalCreateUser($admin_perms);
+     $user = $this->drupalCreateUser();
+ 
+     $this->drupalLogin($admin);
+ 
+-    //test admin form
+-    $this->drupalGet('admin/config/development/masquerade');
++    // Test accessing the admin form
++    $this->drupalGet('admin/config/people/masquerade');
++    $this->assertText(t('Roles that are considered "administrators" for masquerading'));
++    
++    // Test enabling the Masquerade block
++    $this->drupalGet('admin/structure/block/manage/masquerade/masquerade/configure');
++    $this->assertText(t("'@module' block", array('@module' => 'Masquerade')));
++    $edit = array(
++      'regions[bartik]' => 'content',
++      'regions[seven]' => 'content',
++    );
++    $this->drupalPost('admin/structure/block/manage/masquerade/masquerade/configure', $edit, t('Save block'));
++    $this->assertText(t('The block configuration has been saved.'));
+ 
+-    //test switch
+-    $this->drupalGet('masquerade/switch/' . $user->uid);
+-    $this->assertText('Now masquerading as ' . $user->name);
++    // Test switch from user profile
++    $this->drupalGet("user/{$user->uid}");
++    $this->clickLink(t('Masquerade as @name', array('@name' => $user->name)));
++    $this->assertText(t('You are now masquerading as @name.', array('@name' => $user->name)));
+ 
+-    //test unswitch
+-    $this->drupalGet('masquerade/unswitch');
+-    $this->assertText('No longer masquerading as ' . $user->name);
++    // Test unswitch
++    $this->drupalGet('');
++    $this->clickLink(t('Switch back'));
++    $this->assertText(t('You are no longer masquerading as @name and are now logged in as @admin.',
++                        array('@name' => $user->name, '@admin' => $admin->name)));
++    
++    // Test switch from masquerade block
++    $edit = array(
++      'masquerade_user_field' => $user->name,
++    );
++    $this->drupalPost('', $edit, t('Go'));
++    $this->assertText(t('You are now masquerading as @name.', array('@name' => $user->name)));
+   }
+ 
+ }

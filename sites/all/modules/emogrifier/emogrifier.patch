@@ -1,0 +1,308 @@
+diff --git a/emogrifier.module b/emogrifier.module
+index 883cad1..5e99198 100644
+--- a/emogrifier.module
++++ b/emogrifier.module
+@@ -9,10 +9,6 @@
+  * @see http://www.pelagodesign.com/sidecar/emogrifier/
+  */
+ 
+-if (!function_exists('url_to_path')) {
+-  require_once(dirname(__FILE__) . '/url_to_path.inc');
+-}
+-
+ /**
+  * Implements hook_help().
+  */
+@@ -82,156 +78,8 @@ function _emogrifier_process($text, $filter, $format, $langcode, $cache, $cache_
+     );
+     return $text;
+   }
+-  $styles = array();
+-  $urls = array();
+-  // Match linked stylesheets.
+-  if (preg_match_all('#<link[^>]*>\s*#si', $text, $links)) {
+-    foreach ($links[0] as $link) {
+-      if ( preg_match('#\s+type\s*=\s*(["\']?)text/css\1#si', $link)
+-        && preg_match('#\s+rel\s*=\s*(["\']?)stylesheet\1#si', $link)
+-        && preg_match('#\s+media\s*=\s*(["\']?)all\1#si', $link)
+-        && preg_match('#\s+href\s*=\s*(["\']?)([^?]*?)(\?.*?)?\1#si', $link, $match) ) {
+-        $urls = array_merge($urls, array_slice($match, 2, 1));
+-      }
+-      $text = str_replace($link, '', $text);
+-    }
+-  }
+-  // Match style blocks, possibly with @imports.
+-  if (
+-    preg_match_all(
+-      '#(<style[^>]*>)\s*(<!--)?\s*(.*?)\s*(-->)?\s*</style>\s*#si',
+-      $text, $blocks
+-    )
+-  ) {
+-    foreach ($blocks[1] as $block => $tag) {
+-      if ( preg_match('#\s+type\s*=\s*(["\']?)text/css\1#si', $tag)
+-        && preg_match('#\s+media\s*=\s*(["\']?)all\1#si', $tag) ) {
+-        if (
+-          preg_match_all('#@import\s+url\s*\(\s*(["\']?)([^?]*)(\?.*?)?\1\s*\)\s*;#si',
+-            $blocks[3][$block], $imports
+-          )
+-        ) {
+-          $urls = array_merge($urls, $imports[2]);
+-          $rules = trim(str_replace($imports[0], '', $blocks[3][$block]));
+-          if (!empty($rules)) {
+-            $styles[] = $rules;
+-          }
+-        }
+-      }
+-    }
+-    $text = str_replace($blocks[0], '', $text);
+-  }
+-  foreach ($urls as $url) {
+-    if ( ($path = url_to_realpath(check_url($url)))
+-      && (file_exists($path))
+-      && ($style = trim(file_get_contents($path)))
+-    ) {
+-      $styles[] = $style;
+-    }
+-  }
+-  // Strip comments and unecessary whitespace from the collected style rules.
+-  $styles = preg_replace(
+-    array('/[[:space:]]+/s', '#/\*.*?\*/#', '/ +/'), ' ', $styles
+-  );
+-  // Remove quote marks around urls.
+-  $styles = preg_replace('/url[[:space:]]*\([[:space:]]*(["\'])(.*?)\1[[:space:]]*\)/mis', 'url(\2)', $styles);
+-  $text = preg_replace('/url[[:space:]]*\([[:space:]]*(["\'])(.*?)\1[[:space:]]*\)/mis', 'url(\2)', $text);
+-  // Emogrify can't handle several CSS rules on one line,
+-  // so insert a newline character after each closing bracket.
+-  $styles = preg_replace('/}\s*/', "}\n", implode("\n", $styles));
+-  // Strip unwanted container tags.
+-  $text = preg_replace(
+-    '#<(applet|audio|canvas|embed|frameset|head|iframe|object|ruby|script|style|title|video)[^[:alnum:]].*?</\1\s*>\s*#si',
+-    '', '<head>' . $text
+-  );
+-  // Replace or remove other tags.
+-  $text = preg_replace_callback(
+-    '#(<(/?))([!\[[:alnum:]\]]{2,12})([^>]*>)#s', '_emogrifier_replace_tag', $text
+-  );
+-  // Strip unwanted container tags replaced by comments.
+-  $text = preg_replace('#<!--.*?-->\s*#si', '', $text);
+-  // Load the html text and style rules.
+-  $emogrifier = new Emogrifier('<html><body>' . $text . '</body></html>', $styles);
+-  // Apply the rules to create inline style attributes.
+-  $text = @$emogrifier->emogrify();
+-  // Extract body portion.
+-  $text = preg_replace('#.*<body>(.*)</body>.*#Usi', '\1', $text);
+-  // Strip unwanted attributes.
+-  $text = preg_replace(
+-    array(
+-      '#(<[^>]*?)\s*class\s*=\s*(["\']).*?\2#si',
+-      '#(<[^>]*?)\s*id\s*=\s*(["\']).*?\2#si',
+-    ), '\1', $text);
+-  // @todo Strip any whitespace outside of <pre> or <code> tags?
+-  return $text;
+-}
+-
+-function _emogrifier_replace_tag(array $matches) {
+-  static $allowed;
+-  if (!isset($allowed)) {
+-    $allowed = &emogrifier_allowed_tags();
+-  }
+-  return isset( $allowed[ $name = strtolower($matches[3]) ] )
+-    ? ( is_array($tag = $allowed[$name])
+-      ? $tag[ (bool)$matches[2] ] // Allowed start/end tag replacements.
+-      : ( $matches[1] . $tag . $matches[4] ) // Both tag replacements.
+-    ) : '' ; // All unlisted tags are removed, but their contents remain.
+-}
+-
+-function &emogrifier_allowed_tags() {
+-  $tags = drupal_static(__FUNCTION__);
+-  if (!isset($tags)) {
+-    $tags = variable_get(
+-      'emogrifier_allowed_tags',
+-      array_combine(
+-        // Safe tags allowed in both HTML4 and XHTML are unchanged.
+-        $a = explode(
+-          ',', 'a,abbr,address,area,b,bdo,blockquote,br,button,caption,cite,'
+-          . 'code,col,colgroup,dd,del,dfn,div,dl,dt,em,fieldset,font,form,h1,h2,'
+-          . 'h3,h4,h5,h6,hr,i,img,input,ins,kbd,label,legend,li,map,ol,optgroup,'
+-          . 'option,p,pre,q,s,samp,select,span,strike,strong,sub,sup,table,'
+-          . 'tbody,td,textarea,tfoot,th,thead,tr,tt,u,ul,var,'
+-        ), $a
+-      ) + array_fill_keys(
+-        // Deprecated/unsupported inline tags replaced by 'span'.
+-        explode(',', 'acronym,meter,output,progress,time'), 'span'
+-      ) + array_fill_keys(
+-        // Deprecated/unsupported container tags replaced by 'div'.
+-        explode(
+-          ',', 'article,aside,body,details,figcaption,figure,footer,header,'
+-          . 'hgroup,nav,section,summary'
+-        ), 'div'
+-      ) + array(
+-        // Other tag replacements.
+-        'big' => array(
+-          '<span style="font-size: 120%">', '</span>'
+-        ),
+-        'center' => array(
+-          '<div style="text-align: center">', '</div>'
+-        ),
+-        'command' => 'button',
+-        'datalist' => 'select',
+-        'dir' => 'ul',
+-        'mark' => array(
+-          '<span style="background-color: yellow; color: black">', '</span>'
+-        ),
+-        'menu' => 'ul',
+-        's' => array(
+-          '<span style="text-decoration: line-through">', '</span>'
+-        ),
+-        'small' => array(
+-          '<span style="font-size: 80%">', '</span>'
+-        ),
+-        'strike' => array(
+-          '<span style="text-decoration: line-through">', '</span>'
+-        ),
+-        'wbr' => array('&shy;', ''),
+-        'xmp' => 'pre',
+-        )
+-      // All other tags are removed, while their content remains.
+-    );
+-  }
+-  return $tags;
++  $emogrifier = new Emogrifier($text, '');
++  return @$emogrifier->emogrify();
+ }
+ 
+ /**
+diff --git a/url_to_path.inc b/url_to_path.inc
+deleted file mode 100644
+index d11cd7c..0000000
+--- a/url_to_path.inc
++++ /dev/null
+@@ -1,128 +0,0 @@
+-<?php
+-/**
+- * @file
+- * Provide a url_to_path() function by refactoring and repurposing conf_path().
+- *
+- * @see http://drupal.org/node/1113588
+- */
+-
+-/**
+- * Find the appropriate configuration directory for a given host and path.
+- *
+- * @param $http_host
+- *   The hostname and optional port number, e.g. "www.example.com" or
+- *   "www.example.com:8080".
+- *
+- * @param $script_name
+- *   The part of the url following the hostname, including the leading slash.
+- *
+- * @return
+- *   The path of the matching configuration directory.
+- *
+- * @see conf_path()
+- */
+-function find_conf_path($http_host, $script_name, $require_settings = TRUE) {
+-  $confdir = 'sites';
+-
+-  $sites = array();
+-  if (file_exists(DRUPAL_ROOT . '/' . $confdir . '/sites.php')) {
+-    // This will overwrite $sites with the desired mappings.
+-    include(DRUPAL_ROOT . '/' . $confdir . '/sites.php');
+-  }
+-
+-  $uri = explode('/', $script_name);
+-  $server = explode('.', implode('.', array_reverse(explode(':', rtrim($http_host, '.')))));
+-  for ($i = count($uri) - 1; $i > 0; $i--) {
+-    for ($j = count($server); $j > 0; $j--) {
+-      $dir = implode('.', array_slice($server, -$j)) . implode('.', array_slice($uri, 0, $i));
+-      if (isset($sites[$dir]) && file_exists(DRUPAL_ROOT . '/' . $confdir . '/' . $sites[$dir])) {
+-        $dir = $sites[$dir];
+-      }
+-      if (file_exists(DRUPAL_ROOT . '/' . $confdir . '/' . $dir . '/settings.php') || (!$require_settings && file_exists(DRUPAL_ROOT . '/' . $confdir . '/' . $dir))) {
+-        $conf = "$confdir/$dir";
+-        return $conf;
+-      }
+-    }
+-  }
+-  $conf = "$confdir/default";
+-  return $conf;
+-}
+-
+-/**
+- * Returns the local relative path corresponding to a given URL, if possible.
+- *
+- * Finds the configuration directory matching the given URL, and compares it
+- * to the current configuration directory. Returns a path relative to the drupal
+- * install if they match, and FALSE if they don't.
+- *
+- * In a properly-configured multisite installation, this function helps answer
+- * the question, "Could a given URL match a file or path within my site?"
+- *
+- * Whether the URL does in fact resolve to this site, or at all, cannot be
+- * determined within Drupal itself.  This is only a sanity check.
+- *
+- * @param $url
+- *   The internal path or external URL being linked to, such as
+- *   "drupal/node/34" or "http://example.com/drupal/foo".
+- * @return
+- *   FALSE if $url contains a host/port/path that does not match the current
+- *   site, or else a drupal path such as "node/34" or "foo".
+- *
+- * @see conf_path(), find_conf_path()
+- */
+-function url_to_path($url) {
+-  global $base_path;
+-  $local = &drupal_static('__FUNCTION__', array());
+-  $base_len = strlen($base_path);
+-
+-  $parts = parse_url($url);
+-  $http_host = isset($parts['host'])
+-    ? $parts['host'] : $_SERVER['HTTP_HOST'];
+-  if (isset($parts['port'])) {
+-    $http_host .= ':' . $parts['port'];
+-  }
+-  $script_name = '/';
+-  if (isset($parts['path'])) {
+-    $script_name .= ltrim($parts['path'], '/');
+-  }
+-  $path = $http_host . $script_name;
+-  if (!isset($local[$path])) {
+-    $local[$path] = (
+-      conf_path() == find_conf_path($http_host, $script_name)
+-      && !strncmp($script_name, $base_path, $base_len)
+-    );
+-  }
+-  return $local[$path]
+-    ? substr($script_name, $base_len) : FALSE;
+-}
+-
+-/**
+- * Returns an absolute local path corresponding to a given URL, if possible.
+- *
+- * For example, when looking for image URLs within an email message body for
+- * possible conversion to inline attachments, the following code might be used:
+- * @code
+- *   if ( !url_is_external($url)
+- *     && ($path = url_to_realpath($url))
+- *     && file_exists($path) ) {
+- *     // Attach $path and replace $url.
+- *     ...
+- *   }
+- * @endcode
+- *
+- * @param $url
+- *   The internal path or external URL being linked to, such as "node/34" or
+- *   "http://example.com/drupal/foo".
+- * @return
+- *   FALSE if $url contains a host/port/path that does not match the current
+- *   site, or else an absolute local path such as "/path/to/drupal/node/34".
+- *
+- * @see url_to_path()
+- */
+-function url_to_realpath($url) {
+-  $path = url_to_path($url);
+-  if ($path) {
+-    return realpath(DRUPAL_ROOT . '/' . $path);
+-  }
+-  return FALSE;
+-}

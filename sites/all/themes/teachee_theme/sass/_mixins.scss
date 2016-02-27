@@ -1,0 +1,165 @@
+@mixin green_button() {
+  background: $green_button;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  border: none;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+@mixin green_button_hover() {
+  background: $green_button_hover;
+  text-decoration: none;
+}
+@mixin green_button_active() {
+  background: $green_button_active;
+  text-decoration: none;
+}
+@mixin dark_green_button() {
+  background: #42925f;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+@mixin dark_green_button_hover() {
+  background: #34724b;
+  text-decoration: none;
+}
+@mixin gray_button() {
+  background: $gray_button;
+  font-size: 14px;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+@mixin gray_button_hover() {
+  background: $gray_button_hover;
+  text-decoration: none;
+}
+@mixin grey_button() {
+  background: $gray_button;
+  font-size: 14px;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+@mixin grey_button_hover() {
+  background: $gray_button_hover;
+  text-decoration: none;
+}
+@mixin dark_green_button {
+  background: #42925f;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+@mixin dark_green_button_hover {
+  background: #34724b;
+  text-decoration: none;
+}
+
+@mixin light_gray_button {
+  background: #dcdcdc;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: $text !important;
+  text-align: center;
+  padding: 8px 18px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+@mixin light_gray_button_hover {
+  background: #c7c5c5;
+  text-decoration: none;
+}
+
+@mixin blue_button {
+  background: #8dd5e3;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+@mixin blue_button_hover {
+  background: #5fcde3;
+  text-decoration: none;
+}
+@mixin blue_button_active {
+  background: #57ced9;
+  text-decoration: none;
+}
+@mixin red_button {
+  background: #bd3a12;
+  font-size: $button-font-size;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+@mixin red_button_hover {
+  background: #a33210;
+  text-decoration: none;
+}
+@mixin orange_button {
+  background: #e6b159;
+  font-size: 12px;
+  font-family: $button_font_face;
+  color: #FFF !important;
+  text-align: center;
+  padding: 4px 6px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+@mixin orange_button_hover {
+  background: #cf9f50;
+  text-decoration: none;
+}

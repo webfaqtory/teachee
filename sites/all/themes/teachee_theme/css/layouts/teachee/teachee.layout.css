@@ -1,0 +1,643 @@
+/*******************************************************************************
+ * simple.layout.scss
+ *
+ * Styling of the "simple" layout demonstrating the Compass grid extension Susy
+ * and building mobile first layouts.
+ ******************************************************************************/
+/* line 3, ../../../sass/_form.scss */
+form .form-text {
+  padding: 10px; }
+/* line 6, ../../../sass/_form.scss */
+form .white_input {
+  border: 1px solid #e8eaee;
+  padding: 14px; }
+/* line 10, ../../../sass/_form.scss */
+form .form-item {
+  margin-bottom: 16px; }
+/* line 13, ../../../sass/_form.scss */
+form input.form-text {
+  border: 1px solid #cccccc;
+  background-color: #FFF;
+  width: 100%; }
+/* line 18, ../../../sass/_form.scss */
+form input.form-text:focus {
+  border: 1px solid #4fb182;
+  background-color: #FFF;
+  color: #4fb182; }
+/* line 23, ../../../sass/_form.scss */
+form .description {
+  color: #323232;
+  font-size: 12px !important; }
+/* line 27, ../../../sass/_form.scss */
+form .form-item label {
+  margin-bottom: 16px; }
+/* line 30, ../../../sass/_form.scss */
+form .form-type-checkbox,
+form .form-type-radio,
+form .form-type-radio label,
+form .form-type-radio .iradio_square-green,
+form .form-type-checkbox .icheckbox_square-green, form .form-type-checkbox label {
+  display: inline-block; }
+/* line 37, ../../../sass/_form.scss */
+form .form-type-checkbox .icheckbox_square-green, form .form-type-radio .iradio_square-green {
+  margin-right: 10px; }
+/* line 40, ../../../sass/_form.scss */
+form .form-type-checkbox label, form .form-type-radio label {
+  position: relative;
+  top: -6px;
+  margin-right: 10px;
+  color: b4b4b4; }
+  @media (min-width: 1040px) {
+    /* line 40, ../../../sass/_form.scss */
+    form .form-type-checkbox label, form .form-type-radio label {
+      margin-right: 20px; } }
+  @media (min-width: 1040px) {
+    /* line 40, ../../../sass/_form.scss */
+    form .form-type-checkbox label, form .form-type-radio label {
+      margin-right: 76px; } }
+/* line 52, ../../../sass/_form.scss */
+form select {
+  padding: 10px;
+  background: #efefef;
+  border: none; }
+/* line 57, ../../../sass/_form.scss */
+form .form-actions {
+  margin-bottom: 60px;
+  position: relative; }
+  /* line 60, ../../../sass/_form.scss */
+  form .form-actions .wait {
+    left: 360px;
+    position: absolute;
+    top: 32px;
+    display: none; }
+/* line 67, ../../../sass/_form.scss */
+form .disabled {
+  background-color: #a6acb3 !important;
+  cursor: default; }
+/* line 71, ../../../sass/_form.scss */
+form .disabled:hover {
+  background-color: #a6acb3 !important; }
+/* line 74, ../../../sass/_form.scss */
+form .form-actions .gray_button {
+  margin-right: 40px; }
+/* line 77, ../../../sass/_form.scss */
+form .form-actions .next_button {
+  margin-left: 40px; }
+/* line 80, ../../../sass/_form.scss */
+form #edit-delete, form #edit-delete--1, form #edit-delete--2, form #edit-delete--3 {
+  display: none; }
+/* line 83, ../../../sass/_form.scss */
+form .field-multiple-table th {
+  display: none; }
+/* line 86, ../../../sass/_form.scss */
+form #edit-field-latitude, form #edit-field-longitude {
+  display: none; }
+/* line 89, ../../../sass/_form.scss */
+form .form-item label, form .form-actions label {
+  font-weight: normal; }
+
+/* line 95, ../../../sass/_form.scss */
+.page-moderate #edit-actions #edit-delete {
+  display: inline-block !important;
+  margin-left: 20px; }
+
+/* line 1, ../../../sass/_dialog.scss */
+.ui-widget-overlay {
+  background: #4c4c4c;
+  opacity: 0.5; }
+
+/* line 6, ../../../sass/_dialog.scss */
+.ui-widget-content, .ui-widget-header {
+  border: none; }
+
+/* line 9, ../../../sass/_dialog.scss */
+.ui-dialog {
+  padding: 0; }
+  /* line 11, ../../../sass/_dialog.scss */
+  .ui-dialog .ui-dialog-titlebar {
+    background-color: #31373f;
+    background-image: url(../../../images/dialog_logo.png);
+    background-repeat: no-repeat;
+    background-position: 20px 11px;
+    padding-left: 48px;
+    color: #FFF; }
+  /* line 19, ../../../sass/_dialog.scss */
+  .ui-dialog .ui-dialog-content {
+    padding: 16px 16px 8px 16px; }
+  /* line 22, ../../../sass/_dialog.scss */
+  .ui-dialog .ui-widget-header {
+    font-weight: normal;
+    font-size: 16px; }
+  /* line 26, ../../../sass/_dialog.scss */
+  .ui-dialog .ui-dialog-buttonpane {
+    padding-top: 0;
+    margin-top: 0; }
+  /* line 30, ../../../sass/_dialog.scss */
+  .ui-dialog textarea {
+    width: 100%; }
+  /* line 33, ../../../sass/_dialog.scss */
+  .ui-dialog .green_button {
+    font-size: 14px; }
+  /* line 38, ../../../sass/_dialog.scss */
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button {
+    min-width: 120px;
+    background: #67c288;
+    font-size: 14px;
+    font-family: "AvenirNextMedium";
+    color: #FFF !important;
+    text-align: center;
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    cursor: pointer;
+    border: none;
+    padding: 0 20px;
+    white-space: nowrap; }
+
+/* line 47, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-button, .ui-dialog-titlebar .ui-dialog-titlebar-close {
+  width: 16px;
+  height: 16px;
+  background: url("../../../images/dialog_close.png") no-repeat left top; }
+/* line 52, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-dialog-titlebar-close {
+  border: none; }
+/* line 55, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-button-icon-only .ui-icon {
+  left: 0; }
+/* line 58, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-icon {
+  background: none; }
+/* line 61, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-state-default {
+  background-position: 0 0;
+  border: none; }
+/* line 65, ../../../sass/_dialog.scss */
+.ui-dialog-titlebar .ui-state-hover {
+  background-position: 0 -15px;
+  border: none; }
+
+/* line 71, ../../../sass/_dialog.scss */
+.ui-dialog-buttonset .ui-button-text {
+  padding: 0; }
+/* line 74, ../../../sass/_dialog.scss */
+.ui-dialog-buttonset .ui-state-default {
+  background: #67c288;
+  font-size: 14px;
+  font-family: "AvenirNextMedium";
+  color: #FFF !important;
+  text-align: center;
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  border: none;
+  padding: 0 20px;
+  white-space: nowrap;
+  min-width: 135px; }
+/* line 78, ../../../sass/_dialog.scss */
+.ui-dialog-buttonset .ui-state-hover {
+  background: #2fc265;
+  text-decoration: none;
+  min-width: 135px; }
+
+/* line 84, ../../../sass/_dialog.scss */
+.ui-dialog.facebook .ui-dialog-titlebar {
+  background-color: #4e71a7;
+  background-image: url(../../../images/dialog_facebook.png);
+  background-repeat: no-repeat;
+  background-position: 20px 11px;
+  padding-left: 48px;
+  color: #FFF; }
+/* line 93, ../../../sass/_dialog.scss */
+.ui-dialog.facebook .ui-dialog-buttonset .ui-state-default {
+  background: #4e71a7; }
+/* line 96, ../../../sass/_dialog.scss */
+.ui-dialog.facebook .ui-dialog-buttonset .ui-state-hover {
+  background: #798fb2; }
+/* line 100, ../../../sass/_dialog.scss */
+.ui-dialog.facebook textarea {
+  height: 140px; }
+
+/* line 105, ../../../sass/_dialog.scss */
+.ui-dialog.twitter .ui-dialog-titlebar {
+  background-color: #0abdf5;
+  background-image: url(/../../../images/dialog_twitter.png);
+  background-repeat: no-repeat;
+  background-position: 20px 11px;
+  padding-left: 48px;
+  color: #FFF; }
+/* line 114, ../../../sass/_dialog.scss */
+.ui-dialog.twitter .ui-dialog-buttonset .ui-state-default {
+  background: #0abdf5; }
+/* line 117, ../../../sass/_dialog.scss */
+.ui-dialog.twitter .ui-dialog-buttonset .ui-state-hover {
+  background: #09a8d9; }
+/* line 121, ../../../sass/_dialog.scss */
+.ui-dialog.twitter textarea {
+  height: 80px; }
+
+/* line 126, ../../../sass/_dialog.scss */
+.ui-dialog.linkedin .ui-dialog-titlebar {
+  background-color: #068fc1;
+  background-image: url(../../../images/dialog_linkedin.png);
+  background-repeat: no-repeat;
+  background-position: 20px 11px;
+  padding-left: 48px;
+  color: #FFF; }
+/* line 135, ../../../sass/_dialog.scss */
+.ui-dialog.linkedin .ui-dialog-buttonset .ui-state-default {
+  background: #068fc1; }
+/* line 138, ../../../sass/_dialog.scss */
+.ui-dialog.linkedin .ui-dialog-buttonset .ui-state-hover {
+  background: #077ca7; }
+/* line 142, ../../../sass/_dialog.scss */
+.ui-dialog.linkedin textarea {
+  height: 140px; }
+
+/* line 147, ../../../sass/_dialog.scss */
+.ui-dialog.email .ui-dialog-titlebar {
+  background-color: #31373f;
+  background-image: url(../../../images/dialog_email.png);
+  background-repeat: no-repeat;
+  background-position: 20px 11px;
+  padding-left: 48px;
+  color: #FFF; }
+/* line 155, ../../../sass/_dialog.scss */
+.ui-dialog.email #social_post_message {
+  height: 140px; }
+/* line 158, ../../../sass/_dialog.scss */
+.ui-dialog.email #social_email_addresses {
+  height: 80px; }
+/* line 161, ../../../sass/_dialog.scss */
+.ui-dialog.email label {
+  margin-top: 20px;
+  display: block; }
+
+/* line 167, ../../../sass/_dialog.scss */
+.ui-dialog.signin #signin {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+  /* line 170, ../../../sass/_dialog.scss */
+  .ui-dialog.signin #signin .green_button {
+    width: 135px; }
+  /* line 173, ../../../sass/_dialog.scss */
+  .ui-dialog.signin #signin input {
+    width: 300px; }
+
+/* line 178, ../../../sass/_dialog.scss */
+.ui-dialog.noclose .ui-dialog-titlebar .ui-button {
+  display: none; }
+
+/* line 181, ../../../sass/_dialog.scss */
+#modal_dialog_content {
+  margin-bottom: 15px; }
+  /* line 183, ../../../sass/_dialog.scss */
+  #modal_dialog_content .icheckbox_square-green, #modal_dialog_content .iradio_square-green {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px; }
+  /* line 188, ../../../sass/_dialog.scss */
+  #modal_dialog_content .buttons {
+    margin-top: 20px; }
+    /* line 190, ../../../sass/_dialog.scss */
+    #modal_dialog_content .buttons div {
+      min-width: 160px; }
+    /* line 193, ../../../sass/_dialog.scss */
+    #modal_dialog_content .buttons .margin {
+      margin-right: 10px; }
+    /* line 196, ../../../sass/_dialog.scss */
+    #modal_dialog_content .buttons .green_button {
+      min-width: 160px; }
+  /* line 200, ../../../sass/_dialog.scss */
+  #modal_dialog_content a {
+    color: #4fb182; }
+
+/* line 205, ../../../sass/_dialog.scss */
+#modal_feedback_content #feedback-node-form #field-page-path-add-more-wrapper,
+#modal_feedback_content #feedback-node-form .form-item-title,
+#modal_feedback_content #feedback-node-form #edit-field-agent {
+  display: none; }
+/* line 210, ../../../sass/_dialog.scss */
+#modal_feedback_content #feedback-node-form #edit-actions {
+  margin-bottom: 20px; }
+
+/* line 216, ../../../sass/_dialog.scss */
+#modal_dialog_join .join {
+  margin-top: 10px; }
+/* line 219, ../../../sass/_dialog.scss */
+#modal_dialog_join #user-register-form, #modal_dialog_join #edit-actions {
+  margin-bottom: 15px; }
+/* line 222, ../../../sass/_dialog.scss */
+#modal_dialog_join #signin {
+  position: relative;
+  margin-bottom: 20px; }
+  @media (min-width: 704px) {
+    /* line 222, ../../../sass/_dialog.scss */
+    #modal_dialog_join #signin {
+      top: 28px; } }
+
+/* line 231, ../../../sass/_dialog.scss */
+#modal_terms_dialog #dialog_content {
+  max-height: 400px; }
+
+/* line 236, ../../../sass/_dialog.scss */
+.ui-dialog #modal_dialog_endorse_teacher #modal_dialog_endorse_teacher_content .green_button {
+  display: none; }
+
+/* line 242, ../../../sass/_dialog.scss */
+.ui-dialog.incomming_call .top_wrapper .photo {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px; }
+  /* line 246, ../../../sass/_dialog.scss */
+  .ui-dialog.incomming_call .top_wrapper .photo .border {
+    border-radius: 40px;
+    height: 80px;
+    width: 80px; }
+  /* line 251, ../../../sass/_dialog.scss */
+  .ui-dialog.incomming_call .top_wrapper .photo #online {
+    display: none; }
+/* line 255, ../../../sass/_dialog.scss */
+.ui-dialog.incomming_call .top_wrapper .details {
+  display: inline-block;
+  vertical-align: top; }
+  /* line 258, ../../../sass/_dialog.scss */
+  .ui-dialog.incomming_call .top_wrapper .details .name {
+    font-size: 18px;
+    font-weight: bold; }
+/* line 264, ../../../sass/_dialog.scss */
+.ui-dialog.incomming_call p {
+  text-align: center; }
+/* line 268, ../../../sass/_dialog.scss */
+.ui-dialog.incomming_call .ui-dialog-titlebar .ui-button {
+  display: none; }
+
+/* line 275, ../../../sass/_dialog.scss */
+#modal_pay_teacher .currency_wrapper .text {
+  margin-top: 10px; }
+/* line 278, ../../../sass/_dialog.scss */
+#modal_pay_teacher .currency_wrapper .form-item-currency {
+  float: right; }
+/* line 283, ../../../sass/_dialog.scss */
+#modal_pay_teacher .center input {
+  margin: 20px 0; }
+/* line 288, ../../../sass/_dialog.scss */
+#modal_pay_teacher .form-item-amount input {
+  margin-top: 5px; }
+
+/* line 42, ../../../sass/layouts/teachee/teachee.layout.scss */
+.left {
+  float: left; }
+
+/* line 45, ../../../sass/layouts/teachee/teachee.layout.scss */
+.right {
+  float: right; }
+
+/* line 48, ../../../sass/layouts/teachee/teachee.layout.scss */
+.clear {
+  clear: both; }
+
+/* line 51, ../../../sass/layouts/teachee/teachee.layout.scss */
+.hidden {
+  display: none; }
+
+/* line 54, ../../../sass/layouts/teachee/teachee.layout.scss */
+.hidden2 {
+  display: none !important; }
+
+/* line 57, ../../../sass/layouts/teachee/teachee.layout.scss */
+.link {
+  cursor: pointer; }
+
+/* line 60, ../../../sass/layouts/teachee/teachee.layout.scss */
+.center {
+  text-align: center; }
+
+/* line 63, ../../../sass/layouts/teachee/teachee.layout.scss */
+a {
+  text-decoration: none;
+  color: #67c288; }
+
+/* line 67, ../../../sass/layouts/teachee/teachee.layout.scss */
+a:hover {
+  color: #2fc265; }
+
+/* line 73, ../../../sass/layouts/teachee/teachee.layout.scss */
+.green_button {
+  background: #67c288;
+  font-size: 14px;
+  font-family: "AvenirNextMedium";
+  color: #FFF !important;
+  text-align: center;
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  border: none;
+  padding: 0 20px;
+  white-space: nowrap; }
+
+/* line 76, ../../../sass/layouts/teachee/teachee.layout.scss */
+.green_button:hover {
+  background: #2fc265;
+  text-decoration: none; }
+
+/* line 79, ../../../sass/layouts/teachee/teachee.layout.scss */
+.green_button:active {
+  background: #74db9a;
+  text-decoration: none; }
+
+/* line 82, ../../../sass/layouts/teachee/teachee.layout.scss */
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh; }
+
+/* line 87, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-full-width-header {
+  background: #31373f;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 56px; }
+
+/* line 94, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-full-width-footer {
+  background: #31373f;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  min-height: 56px; }
+
+/* line 101, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-header,
+.l-main,
+.l-footer {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto; }
+  /* line 12, ../../../../../../../../../../home/john/.rvm/gems/ruby-1.9.3-p547@omega.teachee_theme/gems/susy-2.2.12/sass/susy/output/support/_clearfix.scss */
+  .l-header:after,
+  .l-main:after,
+  .l-footer:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+/* line 107, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-region--highlighted,
+.l-region--help,
+.l-region--sidebar-first,
+.l-region--sidebar-second {
+  margin-bottom: 20px; }
+
+/* line 114, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-full-width {
+  background: #31373f;
+  height: 56px; }
+
+/* line 118, ../../../sass/layouts/teachee/teachee.layout.scss */
+.fullscreen_transparancy {
+  position: absolute;
+  top: 56px;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1; }
+
+/* line 128, ../../../sass/layouts/teachee/teachee.layout.scss */
+.fullscreen_wrapper .fullscreen-bg {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  bottom: 56px;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+  background: rgba(0, 0, 0, 0.5); }
+/* line 139, ../../../sass/layouts/teachee/teachee.layout.scss */
+.fullscreen_wrapper .fullscreen-bg__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+/* line 154, ../../../sass/layouts/teachee/teachee.layout.scss */
+.l-region--header #block-block-1 {
+  margin-top: 18px;
+  margin-right: 5px;
+  text-align: right; }
+  /* line 158, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-region--header #block-block-1 a {
+    color: #FFF; }
+
+@media (min-width: 44em) {
+  /* line 164, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-header,
+  .l-main,
+  .l-footer {
+    max-width: 1200px; }
+
+  /* line 170, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-region--header {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0; }
+
+  /* line 173, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-region--navigation {
+    clear: both; }
+
+  /* line 180, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-first .l-content,
+  .has-sidebar-second .l-content,
+  .has-two-sidebars .l-content {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0; }
+  /* line 183, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first,
+  .has-sidebar-first .l-region--sidebar-second,
+  .has-sidebar-second .l-region--sidebar-first,
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 32.20339%;
+    float: right;
+    margin-right: 0; }
+  /* line 187, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-first .l-region--sidebar-second,
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-second {
+    clear: right; } }
+@media (min-width: 70em) {
+  /* line 195, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-header,
+  .l-main,
+  .l-footer {
+    max-width: 1200px; }
+
+  /* line 201, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .l-region--header {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0; }
+
+  /* line 206, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-first .l-content {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0; }
+  /* line 209, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first {
+    width: 24.05063%;
+    float: left;
+    margin-right: 1.26582%; }
+
+  /* line 214, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-second .l-content {
+    width: 74.68354%;
+    float: left;
+    margin-right: 1.26582%; }
+  /* line 217, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-sidebar-second .l-region--sidebar-second {
+    width: 24.05063%;
+    float: right;
+    margin-right: 0;
+    clear: none; }
+
+  /* line 224, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-two-sidebars .l-content {
+    width: 49.36709%;
+    float: left;
+    margin-right: 1.26582%;
+    margin-left: 25.31646%; }
+  /* line 228, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 24.05063%;
+    float: left;
+    margin-right: 1.26582%; }
+  /* line 232, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first {
+    margin-left: -75.94937%; }
+  /* line 235, ../../../sass/layouts/teachee/teachee.layout.scss */
+  .has-two-sidebars .l-region--sidebar-second {
+    float: right;
+    margin-right: 0;
+    clear: none; } }
+
+/*# sourceMappingURL=teachee.layout.css.map */

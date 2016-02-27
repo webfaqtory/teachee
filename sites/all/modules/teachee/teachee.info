@@ -1,0 +1,4 @@
+name = "Teachee"
+description = "Main Teachee module."
+core = 7.x
+package = "Teachee"
